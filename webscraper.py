@@ -8,6 +8,13 @@ from email.mime.base import MIMEBase
 from email import encoders
 import io
 import sys
+import os
+from dotenv import load_dotenv
+from email.message import EmailMessage
+
+# Load from .env file
+load_dotenv()
+
 
 # Redirect output
 buffer = io.StringIO()
@@ -29,14 +36,14 @@ try:
             score = data['dates'][0]['games'][i]['linescore']['teams']
             home_score = score['home']['runs']
             away_score = score['away']['runs']
+            teams = data['dates'][0]['games'][i]['teams']
+            home_team = teams['home']['team']['clubName']
+            away_team = teams['away']['team']['clubName']
+            # soup = BeautifulSoup(page.content, "html.parser")
+            # scores["Game" + str(i+1)] = dict()
+            print(f"{away_team}: {away_score}, {home_team}: {home_score}")
         except KeyError:
             pass
-        teams = data['dates'][0]['games'][i]['teams']
-        home_team = teams['home']['team']['clubName']
-        away_team = teams['away']['team']['clubName']
-        # soup = BeautifulSoup(page.content, "html.parser")
-        # scores["Game" + str(i+1)] = dict()
-        print(f"{away_team}: {away_score}, {home_team}: {home_score}")
 
     # Resetting output to regular way
     sys.stdout = sys.__stdout__
@@ -44,8 +51,8 @@ try:
     output = buffer.getvalue()
     buffer.close()
     # Email credentials
-    sender_email = "derek.m.wang2@gmail.com"
-    sender_password = "yjnl jrpn pteq ayoo"
+    sender_email = os.getenv("EMAIL_USER")
+    sender_password = os.getenv("EMAIL_PASS")
     receiver_email = "derek.m.wang2@gmail.com"
 
     # Send up email skeleton
