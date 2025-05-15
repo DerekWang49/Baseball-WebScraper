@@ -3,6 +3,7 @@ Webscraper that draws today's scores from mlb.com
 
 ## Features
 - Retrieves live baseball scores from mlb.com
+- Sends report to my email!
 
 
 ## Installation
@@ -12,7 +13,7 @@ Webscraper that draws today's scores from mlb.com
 2. cd Baseball-WebScraper
 
 ## Usage
-To run, use `python3 webscraper.py`
+To run, use `python webscraper.py`
 
 ## Future Enhancements
 - Add functionality to run webscraper at schedule times
@@ -22,4 +23,3 @@ To run, use `python3 webscraper.py`
 ## Acknowledgements
 - Inspired by my "laziness" to check mlb.com
 - Jeremy Koletar for giving me some helpful pointers for this project
-- BeautifulSoup
